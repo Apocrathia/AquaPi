@@ -14,3 +14,4 @@ Plans
 
 Ideas
   * Use AirPi graphing functionality
+  * Setup script
