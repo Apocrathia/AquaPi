@@ -3,7 +3,7 @@ AquaPi
 
 The aim of this project is to utilize the Raspberry Pi as
 a platform for an aquarium controller suitable for large
-reef systems.
+reef and aquaponic systems.
 
 This is based upon rob's project at thereefuge.com.au
 http://www.thereefuge.com.au/threads/raspberry-pi-tank-monitor-project.3475/
