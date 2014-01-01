@@ -15,6 +15,11 @@ Verbose brainstorm of goals
 Software design ideas
 	* The general idea is to have the controller completely accessible via web interface.
 		* While having an LCD and control panel could be nice, it's not an immediate goal.
-	* I'd like to write everything in Ruby on Rails with a SQLite backend, served up over Nginx.
-		* I'm not familiar with Python, but will be learning soon to make final determination.
+	* I'd like to write everything in Python with a SQLite backend, served up over Nginx.
 		* Completely open to design consideration suggestions and commentary.
+	* behaviour is expected to look something like this.
+		* Core components: Arduino, application, web interface, & database
+		* Arduino <-> application <-> database/web interface
+		* As you can see, the application is the orchestrator of this (BrewPi works on the same concept)
+		* There will be a configuration file with all of the main values, but the application will constantly update the database with those values (or update the config file with the database values if set via web interface)
+		* The arduino code will consist primarily of configuration as to how to read sensors on various pins and send that data over serial to the pi, as well as how to take incomming data over serial and update pins (ex: turn off a light in the web interface, that gets put into the configuration, and on the next cycle, that change is sent to the arduino. The arduino will then respond by setting the pin low). There is not much logic intended to be within the arduino (although, in the future, we may do that as a lite version of the application).
