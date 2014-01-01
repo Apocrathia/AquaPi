@@ -15,8 +15,7 @@ Verbose brainstorm of goals
 Software design ideas
 	* The general idea is to have the controller completely accessible via web interface.
 		* While having an LCD and control panel could be nice, it's not an immediate goal.
-	* I'd like to write everything in Ruby on Rails with a SQLite backend, served up over Nginx.
-		* I'm not familiar with Python, but will be learning soon to make final determination.
+	* I'd like to write everything in Python with a SQLite backend, served up over Nginx.
 		* Completely open to design consideration suggestions and commentary.
 	* behaviour is expected to look something like this.
 		* Core components: Arduino, application, web interface, & database
