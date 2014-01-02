@@ -1,0 +1,25 @@
+Verbose brainstorm of goals
+	* Monitor temperature, pH, ORP, and salinity
+		* Each of these can be monitored with individual probes, and there isn't too much complexity here aside form interfacing.
+	* Control water levels
+		* The idea here would be to have a float switch in the sump/tank, a water reservoir, and an RO/DI source. Float switches and solenoids would control the refill action. A separate reservoir is suggested as a fail-safe to overfilling and flooding. In conjunction to this, a moisture sensor should be added, and checked before ever refilling as an even further fail-safe.
+	* Dosing control
+		* Peristaltic pumps are cheap, and would be easy to implement into the system as a form of dosing control for iodine, calcium, or any chemicals which might be necessary.
+	* Lighting control
+		* Preferably, we could use an 8-channel relay circuit to individually control power of multiple items, but also be able to set which lights are day and night (more functionality could come later).
+	* Feeder control
+		* A simple feeder controlled by a power relay, triggered at a time or manually.
+	* Air intake control
+		* Air pumps could be turned on and off, and solenoid valves could be used to regulate levels.
+
+Software design ideas
+	* The general idea is to have the controller completely accessible via web interface.
+		* While having an LCD and control panel could be nice, it's not an immediate goal.
+	* I'd like to write everything in Python with a SQLite backend, served up over Nginx.
+		* Completely open to design consideration suggestions and commentary.
+	* behaviour is expected to look something like this.
+		* Core components: Arduino, application, web interface, & database
+		* Arduino <-> application <-> database/web interface
+		* As you can see, the application is the orchestrator of this (BrewPi works on the same concept)
+		* There will be a configuration file with all of the main values, but the application will constantly update the database with those values (or update the config file with the database values if set via web interface)
+		* The arduino code will consist primarily of configuration as to how to read sensors on various pins and send that data over serial to the pi, as well as how to take incomming data over serial and update pins (ex: turn off a light in the web interface, that gets put into the configuration, and on the next cycle, that change is sent to the arduino. The arduino will then respond by setting the pin low). There is not much logic intended to be within the arduino (although, in the future, we may do that as a lite version of the application).
