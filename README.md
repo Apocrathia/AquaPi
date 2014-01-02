@@ -10,7 +10,7 @@ developing requirements and sourcing parts.
 
 The project's home page is located at [aquapi.org][aquapi.org]
 
-Bug tracking is on[Google Code][googleissues].
+Bug tracking is on [Google Code][googleissues].
 
 Loosely based upon rob's project at [thereefuge.com.au][reefuge]
 
