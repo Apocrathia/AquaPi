@@ -15,6 +15,7 @@ Verbose brainstorm of goals
 Software design ideas
 	* The general idea is to have the controller completely accessible via web interface.
 		* While having an LCD and control panel could be nice, it's not an immediate goal.
+		* If an LCD is added, it would be via the Raspberry Pi's GPIO
 	* I'd like to write everything in Python with a SQLite backend, served up over Nginx.
 		* Completely open to design consideration suggestions and commentary.
 	* behaviour is expected to look something like this.
