@@ -1,1 +1,0 @@
-1374193595 0 5 & Acidity pH 8.00 8.3 9 7 8.8 8.0 0 0 0 0 1 3 & ORP orp 428.99 200 500 0 450 10 0 0 0 0 1 0 & ReefTemp Deg_C 24.2 29 30 20 29 25 0 0 0 1 1 1 & TempProfile Deg_C 21.7 29 40 10 30 0 0 0 0 0 1 0 & Evaporation Litre 21 35 40 0 40 20 0 0 0 0 1 3 &
