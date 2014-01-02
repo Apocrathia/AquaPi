@@ -7,4 +7,3 @@ import serial
 # Create serial object for Arduino
 serial = serial.Serial('/dev/tty.usbserial', 9600)
 
-# test
