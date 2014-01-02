@@ -1,0 +1,315 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" >
+<title>Aquarium Reef Monitor</title>
+
+<!--Style Sheets-->
+<link rel="stylesheet" href="Aqua.css" type="text/css">
+<link rel="stylesheet" href="hist_slider/css/dateslider.css" type="text/css">
+<!--Javascript Libaries Animation-->
+<script src="raphael/raphael-min.js" type="text/javascript" charset="utf-8"></script>
+<!--Javascript Libaries for date slider-->
+<script type="text/javascript" src="hist_slider/js/prototype.js"></script>
+<script type="text/javascript" src="hist_slider/js/scriptaculous.js?load=effects,dragdrop"></script>
+<script type="text/javascript" src="hist_slider/js/date-en-AU.js"></script>
+<!--<script type="text/javascript" src="hist_slider/js/date-en-US.js"></script>-->
+<script type="text/javascript" src="hist_slider/js/dateslider.js"></script>
+</head>
+
+<body id="main" onLoad="scandata()">
+
+  <!--Create Header Divs-->
+<div id="main1"  style="background-color:#4272ad; padding-left:5px;border-width:thin;border:groove;background-repeat:repeat-x;float:left;width:1032px"><h2>Aquarium Monitor</h2></div>
+<div id="main2" style="background-image:url(gaugebackground.png);padding-top:8px;padding-bottom:8px;padding-left:70px;border-width:thin;border:groove;background-repeat:repeat-x;float:left;width:967px">
+
+  <!--Create Gauge Divs-->
+  
+<div id="g1" class="gauge" onClick="update_trend('gauge1','Tag1',' pH')"> </div>
+<div id="g2" class="gauge" onClick="update_trend('gauge2','Tag2',' ORP')"> </div>
+<div id="g3" class="gauge" onClick="update_trend('gauge3','Tag3',' Reef Temp')"> </div>
+<div id="g4" class="gauge" onClick="update_trend('gauge4','Tag4',' Heater')"> </div>
+<div id="g5" class="gauge" onClick="update_trend('gauge5','Tag5',' ATO')"> </div>
+
+      
+</div>
+
+
+    <div id=RefreshData>
+    <FORM  name="ajax" method="POST" action="">
+	 <INPUT type="BUTTON" value="Refresh" ONCLICK="scandata()">
+     <input type="text" name="dyn" size="22" value="">
+	</FORM>
+    
+    </div>
+	
+
+    
+
+
+ <script language="javascript" type="text/javascript">
+ 
+
+
+<!--Create Raphael papers and assign to Div ID's--> 
+ 	paper1 = Raphael("g1", 155, 155);
+	paper2 = Raphael("g2", 155, 155);
+	paper3 = Raphael("g3", 155, 155);
+	paper4 = Raphael("g4", 155, 155);
+	paper5 = Raphael("g5", 155, 155);
+
+
+<!--Check for IE as it requires slight bias to align text the same as FF-->
+    IE='\v'=='v';
+       if (IE == true) IEbias =0;
+       else IEbias =0;
+ 
+<!--Ajax request to get data file containing gauge parameters-->
+function scandata()
+	{ 
+		var req = null; 
+
+		document.ajax.dyn.value="Started...";
+		if(window.XMLHttpRequest)
+			req = new XMLHttpRequest();
+		else if (window.ActiveXObject)
+			req  = new ActiveXObject(Microsoft.XMLHTTP)
+		    req.onreadystatechange = function()
+	
+		{ 
+			document.ajax.dyn.value="Wait Server...";
+			document.ajax.dyn.style.backgroundColor ="yellow";
+			if(req.readyState == 4)
+			{
+				if(req.status == 200)
+				{
+					document.ajax.dyn.value="Data Received";
+
+	<!--Create an array from the retrieved text file, 1 array per Tag-->
+	datast=req.responseText;
+	array1=datast.split(" & ");
+		Datascan=array1[0].split(" ");
+		Tag1=array1[1].split(" ");
+		Tag2=array1[2].split(" ");
+		Tag3=array1[3].split(" ");
+		Tag4=array1[4].split(" ");
+		Tag5=array1[5].split(" ");
+	    show();	
+				}	
+				else	
+				{
+					document.ajax.dyn.value="Error: code " + req.status + " " + req.statusText;
+					document.ajax.dyn.style.backgroundColor ="red";
+
+				}	
+			} 
+		} 
+	   dummy = new Date().getTime(); //create dummy variable (seconds) to force IE to retrieve txt file and not use cached txt file
+	   req.open("GET","aqua_tag.txt?" + dummy, true); 
+	   req.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"); 
+	   req.send(null); 
+	} 
+<!--End of Ajax function-->
+
+
+
+
+
+function show() // updates text field (next to refresh button) to show at what time the data was recorded
+{	scantime = new Date(Datascan[0] * 1000); //Get time of scan from retreived file and convert to HH:MM to dislay on text field
+	scanampm = " AM";
+	scanhour= scantime.getHours(); if (scanhour >12) {scanhour = scanhour - 12, scanampm = " PM"}
+	scanmin = scantime.getMinutes();	if (scanmin <10) {scanmin ="0" +scanmin}
+	 document.ajax.dyn.value="Last Scan "+scanhour + ":" +scanmin +scanampm; //Displays time retrieved from txt file
+      document.ajax.dyn.style.backgroundColor ="white";
+	  
+	  AnimateGauges()      }
+
+/* This show the contents of the arrays created from the data file
+
+	array1 contains 
+	[0]Header
+	[1]TagData1
+	[+n]
+
+	DataScan[] array explodes array1[0] into the following:
+	[0]Time of scan Epoch
+	[1]Status, 0=Bad 1=Good -NOT USED
+	[2]No. of Tags          -NOT USED
+
+	Tag(x)[] array explodes the array[1] into the following:
+	[0]Description
+	[1]Engineering units
+	[2]Value
+	[3]Setpoint -NOT USED
+	[4]HighScale
+	[5]LowScale
+	[6]HighAlarmValue 
+	[7]LowAlarmValue
+	[8]Alarm Status, 0=Normal 1=High 2=Low  -NOT USED
+	[9]Alarm Acknowledgement 0=Ack 1=UnAck  -NOT USED
+	[10]Alarm Time   Epoch -NOT USED
+	[11]Auto/manual, 0=Man 1=Auto -NOT USED
+	[12]Scan status, 0=Bad 1=Good
+	[13]Show alarm bands, 0=no bands, 1= Normal range, 2=Low alarm, 3=High alarm, 4=Both Low & High Alarm Bands
+	[14] Max value last 24hrs (Will be used to show history) -NOT USED
+	[15] Min value last 24hrs (Will be used to show History) -NOT USED
+*/
+
+function AnimateGauges()  {
+//Overlay Gauge data onto DIV background(t=Tag No. ie Tag1 is paper1 located in Div1, so t=qty of gauges to be displayed)
+ for (t=1; t<=5; t++) {
+	TAG="Tag" +t;         //Array Name for data (Tag1[])
+	GAUGE="paper" +t;     //Paper Name for animation (paper1)
+	STATUS = "status" +t; // Create the guages status object text
+	//LCD = "LCD" +t;       // Create LCD object text
+
+//draw gauge heading [0],  Engineering units [1]
+	this[GAUGE].clear();
+	this[GAUGE].text(10, (12 + IEbias), this[TAG][0]).attr("text-anchor","start").attr("font-size", "12pt").attr("fill", "white");
+	this[GAUGE].text(81, 75, this[TAG][1]).attr("font-size", "11pt").attr("fill", "BLUE");
+//Do some calcs and get major graduation units value for scale
+	graduation=(this[TAG][4]-this[TAG][5])/4;
+//draw gauge scale- 0% 25% 50% 75% 100%
+	this[GAUGE].text(35, 112, this[TAG][5]).attr("font-size", "8pt").attr("fill", "#DDDAD9");
+	this[GAUGE].text(38, 73, (parseFloat(this[TAG][5]) + graduation)).attr("font-size", "8pt").attr("fill", "#DDDAD9");
+	this[GAUGE].text(80, 52, (parseFloat(this[TAG][5]) + (2*graduation))).attr("font-size", "8pt").attr("fill", "#DDDAD9");
+	this[GAUGE].text(118, 73,(parseFloat(this[TAG][4]) - graduation)).attr("font-size", "8pt").attr("fill", "#DDDAD9");
+	this[GAUGE].text(124, 112, this[TAG][4]).attr("font-size", "8pt").attr("fill", "#DDDAD9"); 
+
+//Update Pointer & LCD reading	
+	rotation=(212/(this[TAG][4]-this[TAG][5])*(this[TAG][2]-this[TAG][5]));
+		if ((parseFloat (this[TAG][2])) < (parseFloat (this[TAG][5]))) { //Check for under range and clamp pointer
+		this[GAUGE].circle(45, 123, 2).attr("fill", "red").attr("stroke", "red"); //draw under range circle
+	    rotation =-10;} // clamp pointer
+	if ((parseFloat (this[TAG][2])) > (parseFloat (this[TAG][4]))) {//Check for overrange and clamp pointer
+		this[GAUGE].circle(119, 123, 2).attr("fill", "red").attr("stroke", "red"); //draw overrange circle
+		rotation = 220; } //clamp pointer
+	this[GAUGE].text(81, (122 + IEbias), this[TAG][2]).attr("font-size", "10pt").attr("fill", "black"); //draw LCD value 
+   // this[GAUGE].path({stroke: "red", "stroke-width": 2, "stroke-linecap": "round"}).moveTo(80, 100).lineTo(45, 110).rotate(rotation,81,100);
+   this[GAUGE].path("M80 100L45 110").attr({stroke: "red", "stroke-width": 2, "stroke-linecap": "round"}).rotate(rotation,81,100);
+    
+	this[GAUGE].circle(81, 101, 6).attr("fill", "silver").attr("stroke", "black");
+	
+// show Status text
+	StatusTxt = "Bad"; StatusColor = "orange";
+	if      ((parseFloat (this[TAG][2])) >= (parseFloat (this[TAG][6])))	{ StatusTxt = "H. Alarm = " +this[TAG][6], StatusColor = "red"}
+	else if ((parseFloat (this[TAG][2])) <= (parseFloat (this[TAG][7])))	{ StatusTxt = "L. Alarm =" +this[TAG][7], StatusColor = "red"}
+	else if (this[TAG][12] == 1)	        { StatusTxt = "Scan OK", StatusColor = "green"}
+	STATUS = this[GAUGE].text(57, (149 + IEbias), StatusTxt).attr("text-anchor","start").attr("font-size", "9pt").attr("fill", StatusColor);	//write status to gauge
+	
+// Draw Alarm Bands around scale. (200 is the rotation at 100%. You may need to trim it by  adding 0~10 tot he result)
+  switch (this[TAG][13]){
+	
+	case "0": // Do not draw any Bands
+	  break;
+	case "1":	// Normal Range Band
+	  BandStart =(5+200/(this[TAG][4]-this[TAG][5])*(this[TAG][7]-this[TAG][5]));
+	  BandStop=(8+200/(this[TAG][4]-this[TAG][5])*(this[TAG][6]-this[TAG][5]))
+	  DrawAlarmBand("#0F0");
+	   break;
+	case "2": // Low Alarm Band
+	  BandStart =0;
+	  BandStop=(200/(this[TAG][4]-this[TAG][5])*(this[TAG][7]-this[TAG][5]));
+	  DrawAlarmBand("red");
+	  break;
+	case "3":	// High Alarm Band
+	  BandStart =(10+(200/(this[TAG][4]-this[TAG][5])*(this[TAG][6]-this[TAG][5])));
+	  BandStop=200;
+	  DrawAlarmBand("red");
+	  break;
+	case "4": // Low & High Alarm Band
+	  BandStart =0;
+	  BandStop=(200/(this[TAG][4]-this[TAG][5])*(this[TAG][7]-this[TAG][5]));
+	  DrawAlarmBand("red");
+	  BandStart =(10+(200/(this[TAG][4]-this[TAG][5])*(this[TAG][6]-this[TAG][5])));
+	  BandStop=200;
+	  DrawAlarmBand("red");
+   } //end swicth
+   } //end for loop
+   
+<!--Subroutine to draw alarm bands-->
+function DrawAlarmBand(BandColour){
+    for (AlarmBand = BandStart; AlarmBand<=BandStop;){
+	//this[GAUGE].path({stroke: BandColour, "stroke-width": 3, "stroke-linecap": "round"}).moveTo(15, 116).lineTo(14, 111).rotate(AlarmBand,81,100);
+	this[GAUGE].path("M15 116L14 111").attr({stroke: BandColour, "stroke-width": 3, "stroke-linecap": "round"}).rotate(AlarmBand,81,100);
+	
+	AlarmBand =AlarmBand+8;}
+	}
+}
+<!--END OF GAUGES-->
+</script>
+ 
+<div id="main3" style="padding-left:1px;background-repeat:repeat-x;float:left;width:1042px">
+<form name=datebuttons id=datebuttons action="">
+ <fieldset style="background-color:#262626; font-size:12px;padding-bottom:10px; border-color:#454545; color:#FFFFFF;height:529px;">
+   <legend>Time Scale</legend>
+   <input type="radio" name="daterange"  onclick=update_graph() value="end-1d" >1 Day 
+   <input type="radio" name="daterange"  onclick=update_graph() value="end-3d" checked> 3 Days
+   <input type="radio" name="daterange"  onclick=update_graph() value="end-1w">1 Week
+   <input type="radio" name="daterange"  onclick=update_graph() value="end-4w">1 Month &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+   <input type="checkbox" style="float:middle;" name="includelast" onclick=update_graph() value="ON">Overlay last day/week 
+   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Selected Gauge to trend&nbsp;
+<input <input type="text" style="font-size:11px; color:#ff0000; background-color:#D9D9D9;" size="10" name="TrendPen" value="&nbsp;&nbsp NONE">
+
+  
+
+<!--Show Trend Image within fieldset border-->
+
+<div id="trend"><img id="trend1" src="/aqua.png" align="bottom" alt="** Select Gauge to Change Trended Variable**" name="trend1"></div> 
+&nbsp;
+
+</fieldset>
+ </form>
+</div>
+
+
+
+<!--Create CGI variables to pass to server script file to regenerate rrdtool trend image-->
+      
+<script language="javascript" type="text/javascript">
+
+/* Function to call trend from gauge divs */
+ function update_trend(TTYPE, POINT, gfield)
+  {  
+    ttype =TTYPE;
+    point =POINT;
+    document.datebuttons.TrendPen.value=gfield;
+    document.datebuttons.TrendPen.style.color="black";
+    update_graph();
+   }
+
+
+function update_graph() {
+
+ var previous ="";  
+ var start ="";
+ var end   ="now";
+
+/* Get the chart START time from the radio buttons */
+
+ var len = document.datebuttons.daterange.length;
+ var i;
+
+for (i = 0; i <len; i++) {
+      if (document.datebuttons.daterange[i].checked)  {
+      start = document.datebuttons.daterange[i].value; break;   }  }
+	         
+
+          url   = "/cgi-bin/aquatrend.cgi?"
+	  + 'width=945'
+  	  + '&height=200'
+	  + '&highscale=' + this[point][4]
+	  + '&lowscale='  + this[point][5]
+	  + '&ttype='     + ttype
+	  + '&stime='     + start
+	  + '&etime='     + end 
+	  + '&last='      + document.datebuttons.includelast.checked;
+	  alert(url);
+	  document.getElementById('trend1').src=url;
+        }
+    </script>
+</body>
+</html>
