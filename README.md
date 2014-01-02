@@ -25,6 +25,4 @@ Goals
 
 Ideas
   * Setup script for easy deployment
-  * Implement nginx
-  * Implement sqlite
-  * Use AirPi graphing functionality
+  * Use jQuery graphs instead of RRD
