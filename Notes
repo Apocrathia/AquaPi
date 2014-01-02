@@ -1,2 +1,3 @@
-Adafruit article on communicating between Raspberry Pi and Arduino:
+Communicating to the Arduino via serial:
+	http://playground.arduino.cc/interfacing/python
 	http://learn.adafruit.com/arduino-lesson-17-email-sending-movement-detector/arduino-code
