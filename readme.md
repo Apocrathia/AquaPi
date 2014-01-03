@@ -28,18 +28,20 @@ Ideas
 
 AquaPi utilizes the following projects
   * [sickbeard][sickbeard]
-  * [Cheetah][cheetah]
+  * [Django][django]
   * [jQuery][jquery]
+  * [Ino][inotool]
   * [pySerial][pyserial]
-  * [build_arduino.py][buildarduino]
+  * [arduino-python][arduinoapi]
 
 [aquapi.org]: http://aquapi.org
 [reefuge]: http://www.thereefuge.com.au/threads/raspberry-pi-tank-monitor-project.3475
 [sickbeard]: http://sickbeard.com
-[cherrypy]: http://www.cherrypy.org
-[cheetah]: http://www.cheetahtemplate.org
+[django]: http://www.djangoproject.com
+[inotool]: http://inotool.org
 [jquery]: http://jquery.com
 [pyserial]: http://pyserial.sourceforge.net/
+[arduinoapi]: https://github.com/thearn/Python-Arduino-Command-API
 [buildarduino]: http://playground.arduino.cc/BuildArduino/Py
 [googleissues]: http://code.google.com/p/aquapi/issues/list
 [googlenewissue]: http://code.google.com/p/aquapi/issues/entry
