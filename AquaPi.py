@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python
 
 # AquaPi Main Orchestrator
 
@@ -14,14 +14,31 @@
 
 # bring in system libraries
 import sys
+import subprocess
+import os
+
+# we need this to read out config file
+import configparser
 
 # We're going to 
-# make sure that the user is running Python3
+# make sure that the python is recent enough
 if sys.version_info < (3, 0):
-	sys.exit("Please update your Python environment to 2.5 or greater")
+	sys.exit("Please update your Python environment to 3.0 or greater")
 
 def main():
+	# wait, did we get some parameters?
+	# What about any configuration options?
+	config = read_config('config.ini')
+	NAME = config['General']['name']
+	HOST = config['Server']['hostname']
+	PORT = config['Server']['port']
 
+	subprocess.call(['manage.py', "{}:{}".format(HOST,PORT)])
+
+def read_config(configfile):
+	config = configparser.ConfigParser()
+	config.read(configfile)
+	return config
 
 # as long as this script was launched directly
 if __name__ == "__main__":

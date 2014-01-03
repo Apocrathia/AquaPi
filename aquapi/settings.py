@@ -1,5 +1,5 @@
 """
-Django settings for aquapi project.
+Django settings for AquaPi project.
 
 For more information on this file, see
 https://docs.djangoproject.com/en/1.6/topics/settings/
@@ -17,7 +17,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 # See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '06-&6(j+)mf_39d&lk!lz!=!^_sehjwc-6^38t^#+geh-_q(z$'
+SECRET_KEY = ')vzp5y80hs%-3_t=2+@rr14ly!gr7k8(=t$w1434e-fou+$4_&'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -47,9 +47,9 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
-ROOT_URLCONF = 'aquapi.urls'
+ROOT_URLCONF = 'AquaPi.urls'
 
-WSGI_APPLICATION = 'aquapi.wsgi.application'
+WSGI_APPLICATION = 'AquaPi.wsgi.application'
 
 
 # Database
@@ -58,7 +58,7 @@ WSGI_APPLICATION = 'aquapi.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'NAME': os.path.join(BASE_DIR, 'aquapi.db'),
     }
 }
 
