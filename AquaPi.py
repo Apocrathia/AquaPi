@@ -1,11 +1,11 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 # AquaPi Main Orchestrator
 
 # This script will launch the following functionality of AquaPi
 # * Arduino Communication
 # * Database Initialization
-# * Web Server
+# * Web Backend
 
 # A lot of this is blantantly ripped from SickBeard
 # simply because of how awesome SickBeard is. As the project matures
@@ -15,20 +15,11 @@
 # bring in system libraries
 import sys
 
+# We're going to 
 # make sure that the user is running Python3
-if sys.version_info < (2, 5):
+if sys.version_info < (3, 0):
 	sys.exit("Please update your Python environment to 2.5 or greater")
 
-# Bring in the web template framework	
-try:
-    import Cheetah
-    if Cheetah.Version[0] != '2':
-        raise ValueError
-except ValueError:
-    sys.exit("Sorry, requires Python module Cheetah 2.1.0 or newer.")
-except:
-    sys.exit("The Python module Cheetah is required")
-	
 # Here are libraries which will allow AquaPi to communicate with the host
 import locale
 import os
@@ -47,20 +38,8 @@ import getopt
 from Arduino import Arduino
 import time
 
-# Finally, import the AquaPi library itself
-import aquapi
-
-from aquapi import db
-from aquapi import logger
-from aquapi.version import AQUAPI_VERSION
-
-from aquapi.webserveInit import initWebServer
-
-from lib.configobj import ConfigObj
-
 signal.signal(signal.SIGINT, aquapi.sig_handler)
 signal.signal(signal.SIGTERM, aquapi.sig_handler)
-
 
 # SickBeard some really awesome code to start with
 
