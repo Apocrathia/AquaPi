@@ -39,12 +39,12 @@ import traceback
 import getopt
 
 # # Import serial library for raw Arduino communication
-from lib.serial import serial
+#from serial import serial
 # # Create serial object for Arduino
 # serial = serial.Serial('/dev/tty.usbserial', 9600)
 
 # Import Arduino API Library
-from .lib.Arduino import Arduino
+from Arduino import Arduino
 import time
 
 # Finally, import the AquaPi library itself
