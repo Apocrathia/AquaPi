@@ -26,6 +26,16 @@ Ideas
   * Setup script for easy deployment
   * Use jQuery graphs instead of RRD
 
+Requirements:
+  * Python 3 or higher
+  * pyserial 2.6 or higher
+  * An Arduino compatible microcontroller with at least 14KB of flash memory
+
+Installation:
+  * AquaPi is nowhere near ready
+  * Run the setup script - tools/setup.sh
+    * This needs to be a curl command
+
 AquaPi utilizes the following projects
   * [sickbeard][sickbeard]
   * [Django][django]
