@@ -14,7 +14,7 @@ import aquapi
 def main():
 	
 	# Launch the test method in the main class
-	aquapi.test()
+	aquapi.test('0.0.0.0', 80)
 
 def read_config(configfile):
 	print 'Reading configuration file'

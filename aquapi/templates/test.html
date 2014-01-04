@@ -4,10 +4,10 @@
 		<Title>AquaPi Prototype</Title>
 	</head>
 	<body>
-		Enter Arduino code:
+		Lighting Test:
 		<form action="/" method="post">
-			<input type="text" name="input" />
-			<input type="submit" value="Execute" />
+			<input type="submit" name='btn' value="On" />
+			<input type="submit" name='btn' value="Off" />
 		</form>
         {% with messages = get_flashed_messages() %}
             {% if messages %}

@@ -9,7 +9,12 @@ import os
 import flask, flask.views
 
 # import arduino class
-import controller
+#from controller import controller
+# Import arduino API
+from Arduino import Arduino
+
+# need an object that can be referenced from everywhere
+global arduino
 
 # overloads Flask's view method
 class View(flask.views.MethodView):
@@ -19,15 +24,23 @@ class View(flask.views.MethodView):
 		
 	def post(self):
 		# we want to execute the code
-		result = eval(flask.request.form['input'])
-		# display the result
-		flask.flash(result)
-		# and refresh the page
+		if flask.request.form['btn'] == 'On':
+			flask.flash("Turning the lights On")
+			arduino = Arduino('9600')
+			arduino.digitalWrite(13, "HIGH")
+		elif flask.request.form['btn'] == 'Off':
+			flask.flash("Turning the lights Off")
+			arduino = Arduino('9600')
+			arduino.digitalWrite(13, "LOW")
+		# finally
 		return self.get()
 
-def test():
+def test(host="127.0.0.1", port=8080):
 	# instantiate a new arduino
-	arduino = controller.connect('9600')
+	arduino = Arduino('9600')
+	
+	# set pin 13 to output, since that's the one we're using in the test
+	arduino.pinMode(13, "OUTPUT")
 
 	# set a webui object
 	webui = flask.Flask(__name__)
@@ -41,4 +54,4 @@ def test():
 	webui.debug = True
 	
 	# start the server.
-	webui.run('0.0.0.0', 80)
+	webui.run(host, port)
