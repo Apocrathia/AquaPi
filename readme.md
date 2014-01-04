@@ -1,18 +1,15 @@
 # AquaPi
 ======
 
-The aim of this project is to utilize the Raspberry Pi as
-a platform for an aquarium controller suitable for large
-reef and aquaponic systems.
+The aim of this project is to utilize the Raspberry Pi as a platform for an aquarium controller suitable for large reef and aquaponic systems.
 
-This project is still in the planning phase, as I am currently
-developing requirements and sourcing parts.
+This project is still in an embryonic state, and needs help, as I'm not a great developer.
 
-The project's home page is located at [aquapi.org][aquapi.org]
+The project's home page is located at [aquapi.org][aquapi.org].
 
 Bug tracking is on [Google Code][googleissues].
 
-Loosely based upon rob's project at [thereefuge.com.au][reefuge]
+Loosely based upon rob's project at [thereefuge.com.au][reefuge]. Unlike rob's project, which relied heavily upon the Raspberry Pi's digial-only GPIO, this project aims to take advantage of the Arduino's analog/digital capabilities, and interface directly with a Python-based backend. The GPIO can then be used later for an external LCD display.
 
 ------
 
@@ -22,23 +19,21 @@ Loosely based upon rob's project at [thereefuge.com.au][reefuge]
   * Dosing control
   * Lighting control
   * Feeder control
-  * Air intake control
-
-## Ideas
-  * Setup script for easy deployment
-  * Use jQuery graphs instead of RRD
+  * Air pump control
 
 ## Requirements:
-  * Python 3 or higher
-  * pyserial 2.6 or higher
+  * Python 2.5 or higher
   * An Arduino compatible microcontroller with at least 14KB of flash memory
+  * Flask 0.10
+  * arduino-python 0.2
 
 ## Installation:
   * **AquaPi is nowhere near ready**
-  * run the following to execute the setup script: 
-```bash 
+  * Run the following to execute the setup script: 
+```
 bash <(curl -s https://raw.github.com/Apocrathia/AquaPi/master/tools/setup.sh)
 ```
+  * Upload the sketch `avr/src/sketch.ino` to your controller (The script doesn't do this [yet]).
 
 ## AquaPi utilizes the following projects
   * [Flask][flask]
