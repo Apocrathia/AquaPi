@@ -29,19 +29,19 @@ Loosely based upon rob's project at [thereefuge.com.au][reefuge]. Unlike rob's p
 
 ## Installation:
   * **AquaPi is nowhere near ready**
-  * Run the following to execute the setup script: 
+  * Run the following to execute the setup script (as root or with sudo): 
 ```
 bash <(curl -s https://raw.github.com/Apocrathia/AquaPi/master/tools/setup.sh)
-```
+```	
   * Upload the sketch `avr/src/sketch.ino` to your controller (The script doesn't do this [yet]).
 
 ## AquaPi utilizes the following projects
   * [Flask][flask]
   * [jQuery][jquery]
-  * [Ino][inotool]
+  * [Inotool][inotool]
   * [pySerial][pyserial]
   * [arduino-python][arduinoapi]
-  * [And some borrowed code from SickBeard][sickbeard]
+  * And some borrowed code from [SickBeard][sickbeard]
 
 [aquapi.org]: http://aquapi.org
 [reefuge]: http://www.thereefuge.com.au/threads/raspberry-pi-tank-monitor-project.3475
