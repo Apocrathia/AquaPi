@@ -4,10 +4,8 @@
 # installed on your system for the AquaPi application.
 # These requirements include
 # * The latest AquaPi source
-# * Python
-# * CherryPy
-# * Cheetah
-# * pyserial
+# * Python (Obviously)
+# * Flask
 # * arduino-python
 
 # Make sure only root can run our script
@@ -16,13 +14,11 @@ if [ "$(id -u)" != "0" ]; then
    exit
 fi
 
-# pull make sure that this is the latest source from GitHub
-pwd
-cd ..
-pwd
-git pull;
+# pull in the latest source from GitHub
+git clone https://github.com/Apocrathia/AquaPi.git
 
-# fix pip 
+# fix pip (Just in case you get the same error)
+# (really no harm in updating it regardless)
 pip install setuptools --no-use-wheel --upgrade
 
 # install flask

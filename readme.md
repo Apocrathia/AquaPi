@@ -33,21 +33,22 @@ Requirements:
 
 Installation:
   * AquaPi is nowhere near ready
-  * Run the setup script - tools/setup.sh
-    * This needs to be a curl command
+  * run the following: ```bash 
+bash <(curl -s https://raw.github.com/Apocrathia/AquaPi/master/tools/setup.sh)
+```
 
 AquaPi utilizes the following projects
-  * [sickbeard][sickbeard]
-  * [Django][django]
+  * [Flask][flask]
   * [jQuery][jquery]
   * [Ino][inotool]
   * [pySerial][pyserial]
   * [arduino-python][arduinoapi]
+  * [And some borrowed code from SickBeard][sickbeard]
 
 [aquapi.org]: http://aquapi.org
 [reefuge]: http://www.thereefuge.com.au/threads/raspberry-pi-tank-monitor-project.3475
 [sickbeard]: http://sickbeard.com
-[django]: http://www.djangoproject.com
+[flask]: http://flask.pocoo.org/
 [inotool]: http://inotool.org
 [jquery]: http://jquery.com
 [pyserial]: http://pyserial.sourceforge.net/
