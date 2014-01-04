@@ -21,3 +21,12 @@ pwd
 cd ..
 pwd
 git pull;
+
+# fix pip 
+pip install setuptools --no-use-wheel --upgrade
+
+# install flask
+pip install flask
+
+# install the arduino api
+pip install python-arduino

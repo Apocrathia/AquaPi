@@ -1,0 +1,23 @@
+<! DOCTYPE html>
+<html>
+	<head>
+		<Title>AquaPi Prototype</Title>
+	</head>
+	<body>
+		Enter Arduino code:
+		<form action="/" method="post">
+			<input type="text" name="input" />
+			<input type="submit" value="Execute" />
+		</form>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                Results:
+                <pre>
+                    {% for message in messages %}
+{{ message }}
+                    {% endfor %}
+                </pre>
+            {% endif %}
+        {% endwith %}
+	</body>
+</html>
