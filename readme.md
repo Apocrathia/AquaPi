@@ -1,4 +1,4 @@
-AquaPi
+# AquaPi
 ======
 
 The aim of this project is to utilize the Raspberry Pi as
@@ -14,7 +14,9 @@ Bug tracking is on [Google Code][googleissues].
 
 Loosely based upon rob's project at [thereefuge.com.au][reefuge]
 
-Goals
+------
+
+## Goals
   * Monitor temperature, pH, ORP, and salinity
   * Control water levels
   * Dosing control
@@ -22,22 +24,23 @@ Goals
   * Feeder control
   * Air intake control
 
-Ideas
+## Ideas
   * Setup script for easy deployment
   * Use jQuery graphs instead of RRD
 
-Requirements:
+## Requirements:
   * Python 3 or higher
   * pyserial 2.6 or higher
   * An Arduino compatible microcontroller with at least 14KB of flash memory
 
-Installation:
-  * AquaPi is nowhere near ready
-  * run the following: ```bash 
+## Installation:
+  * **AquaPi is nowhere near ready**
+  * run the following to execute the setup script: 
+```bash 
 bash <(curl -s https://raw.github.com/Apocrathia/AquaPi/master/tools/setup.sh)
 ```
 
-AquaPi utilizes the following projects
+## AquaPi utilizes the following projects
   * [Flask][flask]
   * [jQuery][jquery]
   * [Ino][inotool]
