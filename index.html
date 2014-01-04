@@ -34,20 +34,20 @@
         <h1>
 <a name="aquapi" class="anchor" href="#aquapi"><span class="octicon octicon-link"></span></a>AquaPi</h1>
 
-<p>The aim of this project is to utilize the Raspberry Pi as
-a platform for an aquarium controller suitable for large
-reef and aquaponic systems.</p>
+<h1></h1>
 
-<p>This project is still in the planning phase, as I am currently
-developing requirements and sourcing parts.</p>
+<p>The aim of this project is to utilize the Raspberry Pi as a platform for an aquarium controller suitable for large reef and aquaponic systems.</p>
 
-<p>The project's home page is located at <a href="http://aquapi.org">aquapi.org</a></p>
+<p>This project is still in an embryonic state, and needs help, as I'm not a great developer.</p>
+
+<p>The project's home page is located at <a href="http://aquapi.org">aquapi.org</a>.</p>
 
 <p>Bug tracking is on <a href="http://code.google.com/p/aquapi/issues/list">Google Code</a>.</p>
 
-<p>Loosely based upon rob's project at <a href="http://www.thereefuge.com.au/threads/raspberry-pi-tank-monitor-project.3475">thereefuge.com.au</a></p>
+<p>Loosely based upon rob's project at <a href="http://www.thereefuge.com.au/threads/raspberry-pi-tank-monitor-project.3475">thereefuge.com.au</a>. Unlike rob's project, which relied heavily upon the Raspberry Pi's digial-only GPIO, this project aims to take advantage of the Arduino's analog/digital capabilities, and interface directly with a Python-based backend. The GPIO can then be used later for an external LCD display.</p>
 
-<p>Goals</p>
+<hr><h2>
+<a name="goals" class="anchor" href="#goals"><span class="octicon octicon-link"></span></a>Goals</h2>
 
 <ul>
 <li>Monitor temperature, pH, ORP, and salinity</li>
@@ -55,20 +55,36 @@ developing requirements and sourcing parts.</p>
 <li>Dosing control</li>
 <li>Lighting control</li>
 <li>Feeder control</li>
-<li>Air intake control</li>
-</ul><p>Ideas</p>
+<li>Air pump control</li>
+</ul><h2>
+<a name="requirements" class="anchor" href="#requirements"><span class="octicon octicon-link"></span></a>Requirements:</h2>
 
 <ul>
-<li>Setup script for easy deployment</li>
-<li>Use jQuery graphs instead of RRD</li>
-</ul><p>AquaPi utilizes the following projects</p>
+<li>Python 2.5 or higher</li>
+<li>An Arduino compatible microcontroller with at least 14KB of flash memory</li>
+<li>Flask 0.10</li>
+<li>arduino-python 0.2</li>
+</ul><h2>
+<a name="installation" class="anchor" href="#installation"><span class="octicon octicon-link"></span></a>Installation:</h2>
 
 <ul>
-<li><a href="http://sickbeard.com">sickbeard</a></li>
-<li><a href="http://www.cheetahtemplate.org">Cheetah</a></li>
+<li><strong>AquaPi is nowhere near ready</strong></li>
+<li>Run the following to execute the setup script (as root or with sudo): 
+<code>
+bash &lt;(curl -s https://raw.github.com/Apocrathia/AquaPi/master/tools/setup.sh)
+</code> </li>
+<li>Upload the sketch <code>avr/src/sketch.ino</code> to your controller (The script doesn't do this [yet]).</li>
+</ul><h2>
+<a name="aquapi-utilizes-the-following-projects" class="anchor" href="#aquapi-utilizes-the-following-projects"><span class="octicon octicon-link"></span></a>AquaPi utilizes the following projects</h2>
+
+<ul>
+<li><a href="http://flask.pocoo.org/">Flask</a></li>
 <li><a href="http://jquery.com">jQuery</a></li>
+<li><a href="http://inotool.org">Inotool</a></li>
 <li><a href="http://pyserial.sourceforge.net/">pySerial</a></li>
-<li><a href="http://playground.arduino.cc/BuildArduino/Py">build_arduino.py</a></li>
+<li><a href="https://github.com/thearn/Python-Arduino-Command-API">arduino-python</a></li>
+<li>And some borrowed code from <a href="http://sickbeard.com">SickBeard</a>
+</li>
 </ul>
       </section>
     </div>
