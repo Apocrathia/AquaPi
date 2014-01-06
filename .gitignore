@@ -17,6 +17,7 @@ tests/cache.db
 #  Compiled source   #
 ######################
 *.py[co]
+avr/api/.build/*
 
 #  IDE specific      #
 ######################
