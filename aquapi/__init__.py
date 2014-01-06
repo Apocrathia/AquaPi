@@ -8,14 +8,12 @@ import os
 # import webserver to test
 import flask, flask.views
 
-# import arduino class
-from controller import controller
 # Import arduino API
-#from Arduino import Arduino
+from Arduino import Arduino
 
 # need an object that can be referenced from everywhere
 global arduino
-arduino = controller('9600')
+arduino = Arduino('9600')
 
 # overloads Flask's view method
 class View(flask.views.MethodView):
