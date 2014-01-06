@@ -30,9 +30,9 @@ Loosely based upon rob's project at [thereefuge.com.au][reefuge]. Unlike rob's p
 ## Installation:
   * **AquaPi is nowhere near ready**
   * Run the following to execute the setup script (as root or with sudo): 
-```
-bash <(curl -s https://raw.github.com/Apocrathia/AquaPi/master/tools/setup.sh)
-```	
+   ```
+   bash <(curl -s https://raw.github.com/Apocrathia/AquaPi/master/tools/setup.sh)
+   ```	
   * Upload the sketch `avr/src/sketch.ino` to your controller (The script should do this, but I don't trust it yet).
 
 ## AquaPi utilizes the following projects
