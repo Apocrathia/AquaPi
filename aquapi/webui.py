@@ -1,9 +1,10 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python
 
 # AquaPi WebUI Class
 
 # get some system libraries
 import os
+import functools
 
 # import main class
 import aquapi
@@ -20,14 +21,17 @@ webui.secret_key = "aquapi" # very insecure, change to md5
 # simple dict of users
 users = {'test': 'test'}
 
-# setup pages
-webui.add_url_rule('/', 
-		view_func=Main.as_view('index'),
-		methods=['GET', 'POST'])
 
-webui.add_url_rule('/ledtest/', 
-		view_func=LEDTest.as_view('ledtest'), 
-		methods=['GET', 'POST'])
+# wrapper for login requirement
+def login_required(method):
+	@functools.wraps(method)
+	def wrapper(*args, **kwargs):
+		if 'username' in flask.session:
+			return method(*args, **kwargs)
+		else:
+			flask.flash("A login is required to view this page")
+			return flask.redirect(flask.url_for('index'))
+	return wrapper
 
 # views for each page containing code
 
@@ -37,6 +41,10 @@ class Main(flask.views.MethodView):
 		return flask.render_template('index.html')
 
 	def post(self):
+		# Check logout
+		if 'logout' in flask.request.form:
+			flask.session.pop('username', None)
+			return flask.redirect(flask.url_for('index'))
 		# Define required fields
 		required = ['username', 'passwd']
 		# Make sure fields are present
@@ -50,7 +58,7 @@ class Main(flask.views.MethodView):
 		passwd = flask.request.form['passwd']
 
 		# Verify username and password
-		if users.get(username) == passwd:
+		if username in users and users[username] == passwd:
 			flask.session['username'] = username
 		else:
 			flask.flash("Username doesn't exist or incorrect password")
@@ -59,10 +67,12 @@ class Main(flask.views.MethodView):
 
 # overloads Flask's view method
 class LEDTest(flask.views.MethodView):
+	@login_required
 	def get(self):
 		# returns test.html in the 'templates' folder
 		return flask.render_template('ledtest.html')
 
+	@login_required
 	def post(self):
 		# we want to execute the code
 		# if the on button was pushed
@@ -80,7 +90,19 @@ class LEDTest(flask.views.MethodView):
 		# finally
 		return flask.redirect(flask.url_for('ledtest'))
 
+# setup pages (Has to be done after classes are defined)
+webui.add_url_rule('/', 
+		view_func=Main.as_view('index'),
+		methods=['GET', 'POST'])
+
+webui.add_url_rule('/ledtest/', 
+		view_func=LEDTest.as_view('ledtest'), 
+		methods=['GET', 'POST'])
+
+# Start Server function
 def startServer(host="127.0.0.1", port=8080, debug=True):
+	webui.use_debugger = True
+	webui.use_reloader = True
 	webui.debug = debug
 
 	# start the server.

@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python
 
 # AquaPi Main Orchestrator
 
@@ -25,6 +25,7 @@ def help_message():
 def main():
 	# Launch the test method in the main class
 	aquapi.test('0.0.0.0', 80)
+	#aquapi.test('aquapi.apocrathia.com', 80)
 
 # as long as this script was launched directly
 if __name__ == "__main__":
