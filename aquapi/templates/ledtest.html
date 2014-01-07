@@ -1,11 +1,7 @@
-<! DOCTYPE html>
-<html>
-	<head>
-		<Title>AquaPi Prototype</Title>
-	</head>
-	<body>
-		Lighting Test:
-		<form action="/" method="post">
+{% extends "base.html" %}
+{% block body %}
+    <h2>LED Test</h2>
+		<form action="{{url_for('ledtest')}}" method="post">
 			<input type="submit" name='btn' value="On" />
 			<input type="submit" name='btn' value="Off" />
 		</form>
@@ -19,5 +15,7 @@
                 </pre>
             {% endif %}
         {% endwith %}
-	</body>
-</html>
+{% endblock %}
+{% block nav %}
+<li><a href="{{url_for('index')}}">back</a></li>
+{% endblock %}

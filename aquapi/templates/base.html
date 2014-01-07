@@ -1,0 +1,19 @@
+<! DOCTYPE html>
+<html>
+	<head>
+		<Title>AquaPi Prototype</Title>
+		<link rel="stylesheet" type="text/css" href="/static/style.css" />
+	</head>
+	<body>
+	        <div id="content">
+	            {% block body %}{% endblock %}
+	        </div>
+	        <div id="nav">
+	            Navigation:<br />
+	            <ul>
+	                {% block nav %}{% endblock %}
+	                <li><a href="{{url_for('ledtest')}}">LED Test</a></li>
+	            </ul>
+	        </div>
+	</body>
+</html>

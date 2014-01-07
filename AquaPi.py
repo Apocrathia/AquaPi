@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 # AquaPi Main Orchestrator
 
@@ -12,14 +12,14 @@ import aquapi
 
 def daemonize():
 	# setup pidfile and all that crap
-	print 'Daemonize'
+	print('Daemonize')
 
 def read_config(configfile):
-	print 'Reading configuration file'
+	print('Reading configuration file')
 	# Do stuff
 	
 def help_message():
-	print 'Help'
+	print('Help')
 	# Will make this more verbose later
 	
 def main():
