@@ -1,16 +1,21 @@
 # AquaPi Links
-======
+
 ## Other Controllers
   * [Reef Angel][reefangel]
   * [Open Reefs][openreefs]
   * [Profilux][profilux]
   * [Apex][apex]
   * [ReefKeeper][reefkeeper]
+
 ## Communicating to the Arduino via serial:
   * [Arduino Playground - Python Interfacing][serial1]
   * [Adafruit - Raw Serial Output Example][serial2]
-## Driving a 16x2 LCD using the Raspberry Pi's GPIO
+
+## LCD using the Raspberry Pi's GPIO
   * [Adafuit - Raspberry Pi LCD Tutorial][lcd1]
+
+## Flask Tutorials
+  * [calicoJake's YouTube Series][flask1]
 
 [serial1]: http://playground.arduino.cc/interfacing/python
 [serial2]: http://learn.adafruit.com/arduino-lesson-17-email-sending-movement-detector/arduino-code
@@ -20,3 +25,4 @@
 [profilux]: http://www.aquariumcomputer.com/System__E_/Products/Controller/ProfiLux_3/profilux_3.html
 [apex]: http://www.neptunesystems.com/products/apex-controllers/
 [reefkeeper]: http://www.digitalaquatics.com/
+[flask1]: http://www.youtube.com/watch?v=iSrZ6r7hwdM
