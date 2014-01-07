@@ -35,6 +35,9 @@ Loosely based upon rob's project at [thereefuge.com.au][reefuge]. Unlike rob's p
    ```	
   * Upload the sketch `avr/src/sketch.ino` to your controller (The script should do this, but I don't trust it yet).
 
+## To-Do
+  * Find a better name (AquaPi is used by several projects)
+
 ## AquaPi utilizes the following projects
   * [Flask][flask]
   * [jQuery][jquery]
