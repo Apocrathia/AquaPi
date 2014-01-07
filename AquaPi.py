@@ -7,6 +7,9 @@
 # * Database Initialization
 # * Web Backend
 
+# use the config parser class
+import ConfigParser
+
 # Bring in the main aquapi class
 import aquapi
 
@@ -23,9 +26,16 @@ def help_message():
 	# Will make this more verbose later
 	
 def main():
+	# read in config file
+	config = ConfigParser.ConfigParser()
+	config.read('config.ini')
+
+	host = str(config.get('Server','hostname'))
+	port = int(config.get('Server','port'))
+
 	# Launch the test method in the main class
-	aquapi.test('0.0.0.0', 80)
-	#aquapi.test('aquapi.apocrathia.com', 80)
+	#aquapi.test('0.0.0.0', 80)
+	aquapi.test(host, port)
 
 # as long as this script was launched directly
 if __name__ == "__main__":
