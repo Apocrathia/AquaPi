@@ -17,25 +17,33 @@ def daemonize():
 	# setup pidfile and all that crap
 	print('Daemonize')
 
-def read_config(configfile):
+def read_config(configfile = 'config.ini'):
 	print('Reading configuration file')
 	# Do stuff
+	config = ConfigParser.ConfigParser()
+	config.read(configfile)
+
+	# Case statement for attribute selector
+	return {
+		'name': str(config.get('General','name')),
+		'host': str(config.get('Server','host')),
+		'port': int(config.get('Server','port')),
+	}
 	
 def help_message():
 	print('Help')
 	# Will make this more verbose later
 	
 def main():
-	# read in config file
-	config = ConfigParser.ConfigParser()
-	config.read('config.ini')
+	# Do some switch handling
 
-	host = str(config.get('Server','hostname'))
-	port = int(config.get('Server','port'))
+	# read in config file
+	config = read_config('config.ini')
 
 	# Launch the test method in the main class
 	#aquapi.test('0.0.0.0', 80)
-	aquapi.test(host, port)
+	print('Launching ' + config['name'])
+	aquapi.test(config['host'], config['port'])
 
 # as long as this script was launched directly
 if __name__ == "__main__":

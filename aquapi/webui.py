@@ -102,7 +102,7 @@ webui.add_url_rule('/ledtest/',
 # Start Server function
 def startServer(host="127.0.0.1", port=8080, debug=True):
 	webui.use_debugger = True
-	webui.use_reloader = True
+	webui.use_reloader = False
 	webui.debug = debug
 
 	# start the server.
