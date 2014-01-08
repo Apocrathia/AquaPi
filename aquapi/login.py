@@ -9,7 +9,7 @@ import aquapi.settings
 import flask, flask.views
 
 # Front page: Login
-class Main(flask.views.MethodView):
+class Login(flask.views.MethodView):
 	def get(self):
 		return flask.render_template('login.html')
 
