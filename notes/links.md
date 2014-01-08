@@ -17,6 +17,9 @@
 ## Flask Tutorials
   * [calicoJake's YouTube Series][flask1]
 
+## Other
+  * [Google's Hosted jQuery][googlejquery]
+
 [serial1]: http://playground.arduino.cc/interfacing/python
 [serial2]: http://learn.adafruit.com/arduino-lesson-17-email-sending-movement-detector/arduino-code
 [lcd1]: http://learn.adafruit.com/downloads/pdf/drive-a-16x2-lcd-directly-with-a-raspberry-pi.pdf
@@ -26,3 +29,4 @@
 [apex]: http://www.neptunesystems.com/products/apex-controllers/
 [reefkeeper]: http://www.digitalaquatics.com/
 [flask1]: http://www.youtube.com/watch?v=iSrZ6r7hwdM
+[googlejquery]: https://developers.google.com/speed/libraries/devguide
