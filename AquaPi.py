@@ -25,7 +25,7 @@ def main():
 	# Do some switch handling
 
 	# read in config file
-	config = config.read('config.ini')
+	config = aquapi.config.read('config.ini')
 
 	# Launch the test method in the main class
 	#aquapi.test('0.0.0.0', 80)

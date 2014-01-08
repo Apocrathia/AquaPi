@@ -8,11 +8,6 @@ import aquapi.settings
 # import webserver
 import flask, flask.views
 
-# simple dict of users
-users = {'test': 'test'}
-
-# views for each page containing code
-
 # Front page: Login
 class Main(flask.views.MethodView):
 	def get(self):
@@ -36,7 +31,7 @@ class Main(flask.views.MethodView):
 		passwd = flask.request.form['passwd']
 
 		# Verify username and password
-		if username in settings.users and settings.users[username] == passwd:
+		if username in aquapi.settings.users and aquapi.settings.users[username] == passwd:
 			flask.session['username'] = username
 		else:
 			flask.flash("Username doesn't exist or incorrect password")
