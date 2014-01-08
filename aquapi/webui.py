@@ -65,7 +65,7 @@ class Main(flask.views.MethodView):
 
 		return flask.redirect(flask.url_for('index'))
 
-# overloads Flask's view method
+# LED Test Page
 class LEDTest(flask.views.MethodView):
 	@login_required
 	def get(self):
@@ -87,6 +87,12 @@ class LEDTest(flask.views.MethodView):
 			flask.flash("Turning the lights Off")
 			# connect to the arduino
 			aquapi.arduino.digitalWrite(13, "LOW")
+		# This doesn't really do anything yet
+		elif flask.request.form['btn'] == 'Toggle':
+			# Show a message
+			flask.flash("Toggling lights")
+			# read status
+			# reverse status
 		# finally
 		return flask.redirect(flask.url_for('ledtest'))
 
