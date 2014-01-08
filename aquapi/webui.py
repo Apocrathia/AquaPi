@@ -26,7 +26,7 @@ webui.secret_key = aquapi.settings.secret_key
 
 # setup pages (Has to be done after classes are defined)
 webui.add_url_rule('/', 
-		view_func=Main.as_view('index'),
+		view_func=Main.as_view('login'),
 		methods=['GET', 'POST'])
 
 webui.add_url_rule('/ledtest/', 

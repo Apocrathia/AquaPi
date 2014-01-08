@@ -13,8 +13,17 @@
 	            Navigation:<br />
 	            <ul>
 	                {% block nav %}{% endblock %}
-	                <li><a href="{{url_for('ledtest')}}">LED Test</a></li>
-	            </ul>
+	                <hr id="nav"/>
+			{% if 'username' in session %}
+			<li><a href="{{url_for('ledtest')}}">LED Test</a></li>
+	            	{% endif %}
+			</ul>
 	        </div>
-	</body>
+		<div id="flashed">
+	        {% with messages = get_flashed_messages() %}
+		{% for message in messages %}
+			{{ message }}
+		{% endfor %}
+	        {% endwith %}
+	<body>
 </html>

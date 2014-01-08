@@ -5,17 +5,7 @@
 			<input type="submit" name='btn' value="On" />
 			<input type="submit" name='btn' value="Off" />
 		</form>
-        {% with messages = get_flashed_messages() %}
-            {% if messages %}
-                Results:
-                <pre>
-                    {% for message in messages %}
-{{ message }}
-                    {% endfor %}
-                </pre>
-            {% endif %}
-        {% endwith %}
 {% endblock %}
 {% block nav %}
-<li><a href="{{url_for('index')}}">back</a></li>
+<li><a href="{{url_for('login')}}">Back</a></li>
 {% endblock %}

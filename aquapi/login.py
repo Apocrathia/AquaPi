@@ -11,20 +11,20 @@ import flask, flask.views
 # Front page: Login
 class Main(flask.views.MethodView):
 	def get(self):
-		return flask.render_template('index.html')
+		return flask.render_template('login.html')
 
 	def post(self):
 		# Check logout
 		if 'logout' in flask.request.form:
 			flask.session.pop('username', None)
-			return flask.redirect(flask.url_for('index'))
+			return flask.redirect(flask.url_for('login'))
 		# Define required fields
 		required = ['username', 'passwd']
 		# Make sure fields are present
 		for r in required:
 			if r not in flask.request.form:
 				flask.flash("Error: {0} is required.".format(r))
-				return flask.redirect(flask.url_for('index'))
+				return flask.redirect(flask.url_for('login'))
 
 		# Assign fields to variables
 		username = flask.request.form['username']
@@ -36,4 +36,4 @@ class Main(flask.views.MethodView):
 		else:
 			flask.flash("Username doesn't exist or incorrect password")
 
-		return flask.redirect(flask.url_for('index'))
+		return flask.redirect(flask.url_for('login'))
