@@ -16,11 +16,12 @@ from aquapi.main import Main
 # set a webui object
 webui = flask.Flask(__name__)
 
+# bring in our api key
 webui.secret_key = aquapi.settings.secret_key
 
 # setup pages (Has to be done after classes are defined)
 webui.add_url_rule('/', 
-		view_func=Main.as_view('main'),
+		view_func=Main.as_view('index'),
 		methods=['GET'])
 
 webui.add_url_rule('/<page>/', 

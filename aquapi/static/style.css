@@ -3,11 +3,21 @@ body{
     color:#3E4349;
 }
 
-#nav {
+div#nav {
     position: absolute;
     top: 20px;
     left: 5px;
     width: 10em;
+}
+
+hr#nav {
+    width:100px;
+    margin-left:0;
+}
+
+div#flashed {
+    margin-left: 10em;
+    font-size: large;
 }
 
 #content {

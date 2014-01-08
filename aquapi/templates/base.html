@@ -1,11 +1,17 @@
 <! DOCTYPE html>
 <html>
 	<head>
+		<meta charset="utf-8">
 		<Title>AquaPi Prototype</Title>
 		<link rel="stylesheet" type="text/css" href="/static/style.css" />
-		<link rel="stylesheet" type="text/css" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css
+		<link rel="stylesheet" type="text/css" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
 		<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 		<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+		<script type="text/javascript">
+			$(function() {
+				$( "#flashed" ).dialog();
+			});
+		</script>
 	</head>
 	<body>
 	        <div id="content">
@@ -16,8 +22,9 @@
 	            <ul>
 	                {% block nav %}{% endblock %}
 	                <hr id="nav"/>
+			<li><a href="{{url_for('index')}}">Home</a></li>
 			{% if 'username' in session %}
-			<li><a href="{{url_for('ledtest')}}">LED Test</a></li>
+			<li><a href="{{url_for('ledtest')}}">LED Test</a></li>	
 			<li><a href="{{url_for('login')}}">Logout</a></li>	
 			{% else %}
 			<li><a href="{{url_for('login')}}">Login</a></li>
@@ -26,15 +33,10 @@
 	        </div>
 		<div id="flashed" title="Message">
 	        {% with messages = get_flashed_messages() %}
-		{% for message in messages %}
-				{{ message }}
-		{% endfor %}
+			{% for message in messages %}
+				<p>{{ message }}</p>
+			{% endfor %}
 	        {% endwith %}
 		</div>
-		<script type="text/javascript">
-			$(function() {
-				$( "#flashed" ).dialog();
-			});
-		</script>
 	<body>
 </html>

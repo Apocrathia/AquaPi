@@ -7,6 +7,9 @@
 # * Database Initialization
 # * Web Backend
 
+# system classes
+import os
+
 # Bring in the main aquapi class
 import aquapi
 
@@ -34,4 +37,7 @@ def main():
 
 # as long as this script was launched directly
 if __name__ == "__main__":
+	# this is just the directory that I'm keeping everything in
+	# it's a hacky workaround for now
+	os.chdir('/opt/AquaPi')
 	main()
