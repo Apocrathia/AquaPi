@@ -1,12 +1,6 @@
 #!/usr/bin/env python
 
-# AquaPi Main Class
-
-# get some system libraries
-import os
-
-# import local libraries
-import aquapi.webui
+# AquaPi arduino module
 
 # Import arduino API
 from Arduino import Arduino
@@ -15,6 +9,6 @@ from Arduino import Arduino
 global arduino
 arduino = Arduino('9600')
 
-def test(pin=13):
+def ledtest(pin=13):
 	# set pin 13 to output, since that's the one we're using in the test
 	arduino.pinMode(pin, "OUTPUT")

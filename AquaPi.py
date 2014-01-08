@@ -30,10 +30,13 @@ def main():
 	# read in config file
 	config = aquapi.config.read('config.ini')
 
+	# We're still testing, so use the LED on pin 13
+	aquapi.test(13)
+
 	# Launch the test method in the main class
 	#aquapi.test('0.0.0.0', 80)
 	print('Launching ' + config['name'])
-	aquapi.test(config['host'], config['port'])
+	aquapi.webui.startServer(config['host'], config['port'])
 
 # as long as this script was launched directly
 if __name__ == "__main__":
