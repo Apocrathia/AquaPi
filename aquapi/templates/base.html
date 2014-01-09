@@ -3,14 +3,21 @@
 	<head>
 		<meta charset="utf-8">
 		<Title>AquaPi Prototype</Title>
+		<!--Style sheets and stuff-->
 		<link rel="stylesheet" type="text/css" href="/static/style.css" />
-		<link rel="stylesheet" type="text/css" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+		<link rel="stylesheet" type="text/css" href="/static/jquery.pnotify.default.icons.css" />
 		<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 		<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+		<script type="text/javascript" src="/static/jquery.pnotify.min.js"></script>
 		<script type="text/javascript">
-			$(function() {
-				$( "#flashed" ).dialog();
-			});
+		$.pnotify.defaults.styling = "jqueryui";
+        	$.pnotify.defaults.maxonscreen = 5;
+		
+		$( '#flashed' ).ready(function() {
+			$.pnotify({
+		        	text: {{ message }}
+			})
+		})
 		</script>
 	</head>
 	<body>
@@ -31,14 +38,14 @@
 	            	{% endif %}
 			</ul>
 	        </div>
-            {% with messages = get_flashed_messages() %}
-			{% for message in messages %}
-            {% if message:}
-		    <div id="flashed" title="Message">
-				<p>{{ message }}</p>
-            </div>
-            {% endif %}
-			{% endfor %}
+		{% with messages = get_flashed_messages() %}
+		{% for message in messages %}
+		{% if message: %}
+		<div id="flashed">
+			{{ message }}
+		</div>
+		{% endif %}
+		{% endfor %}
 	        {% endwith %}
 
 	<body>
