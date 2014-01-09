@@ -24,19 +24,22 @@
 	                <hr id="nav"/>
 			<li><a href="{{url_for('index')}}">Home</a></li>
 			{% if 'username' in session %}
-			<li><a href="{{url_for('ledtest')}}">LED Test</a></li>	
-			<li><a href="{{url_for('login')}}">Logout</a></li>	
+			<li><a href="{{url_for('ledtest')}}">LED Test</a></li>
+			<li><a href="{{url_for('login')}}">Logout</a></li>
 			{% else %}
 			<li><a href="{{url_for('login')}}">Login</a></li>
 	            	{% endif %}
 			</ul>
 	        </div>
-		<div id="flashed" title="Message">
-	        {% with messages = get_flashed_messages() %}
+            {% with messages = get_flashed_messages() %}
 			{% for message in messages %}
+            {% if message:}
+		    <div id="flashed" title="Message">
 				<p>{{ message }}</p>
+            </div>
+            {% endif %}
 			{% endfor %}
 	        {% endwith %}
-		</div>
+
 	<body>
 </html>
