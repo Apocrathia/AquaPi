@@ -15,6 +15,6 @@ from Arduino import Arduino
 global arduino
 arduino = Arduino('9600')
 
-def test(pin=13):
+def testled(pin=13):
 	# set pin 13 to output, since that's the one we're using in the test
 	arduino.pinMode(pin, "OUTPUT")

@@ -1,0 +1,40 @@
+html *{
+ font-family: 'Helvetica', sans-serif;
+}
+
+body{
+ color:#3E4349;
+}
+
+div#nav {
+ position: relative;
+ top: 20px;
+ left: 5px;
+ width: 10em;
+ margin: 1;
+ padding: 1;
+ border: 1;
+ outline: 1;
+}
+
+div#content {
+ position: relative;
+ margin: 1;
+ padding: 1;
+ border: 1;
+ outline: 1;
+}    
+
+hr#nav {
+ width:100px;
+ margin-left:0;
+}
+
+div#flashed {
+ margin-left: 10em;
+ font-size: large;
+}
+
+#content {
+ margin-left: 10em;
+}

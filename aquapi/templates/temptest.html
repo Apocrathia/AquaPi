@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{% block body %}
+    <h2>LED Test</h2>
+		<form action="{{url_for('temptest')}}" method="get">
+			<input type="submit" name='btn' value="On" />
+			<input type="submit" name='btn' value="Off" />
+		</form>
+{% endblock %}

@@ -20,44 +20,48 @@
 		<!--jQuery-UI-->
 		<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
 		<!--pnotify-->
-		<script type="text/javascript" src="/static/jquery.pnotify.min.js"></script>
-		
+		<script type="text/javascript" src="/static/jquery.pnotify.min.js"></script>		
 	</head>
+	
 	<body>
-	        <div id="content">
-	            {% block body %}{% endblock %}
-	        </div>
-	        <div id="nav">
-	            Navigation:<br />
-	            <ul>
-	                {% block nav %}{% endblock %}
-	                <hr id="nav"/>
+		<div id="content">
+			{% block body %}{% endblock %}
+		</div>
+		
+		<div id="nav">
+			Navigation:<br />
+			<ul>
+			{% block nav %}{% endblock %}
+			<hr id="nav"/>
 			<li><a href="{{url_for('index')}}">Home</a></li>
 			{% if 'username' in session %}
 			<li><a href="{{url_for('ledtest')}}">LED Test</a></li>
+			<li><a href="{{url_for('temptest')}}">Temperature Test</a></li>
 			<li><a href="{{url_for('login')}}">Logout</a></li>
 			{% else %}
 			<li><a href="{{url_for('login')}}">Login</a></li>
-	            	{% endif %}
+			{% endif %}
 			</ul>
-	        </div>
+		</div>
+
 		{% with messages = get_flashed_messages() %}
-		{% for message in messages %}
-		{% if message: %}
-		<script type="text/javascript">
-		$(function(){
-		$.pnotify({
-			title: 'Notice',
-			text: {{ message }}
-			});
-		});
-		</script>
-		{% endif %}
-		{% endfor %}
-	        {% endwith %}
-		<!-- <div if="test">
+			{% for message in messages %}
+				{% if message: %}
+					<script type="text/javascript">
+						$(function(){
+						$.pnotify({
+							title: 'Notice',
+							text: {{ message }}
+							});
+						});
+					</script>
+				{% endif %}
+			{% endfor %}
+	    {% endwith %}
+	    
+		<!--<div if="test">
 			<p>Here be test content</p>
 			<button onclick="flashMessage("This is a test")">Click Me!</button>
-		</div> -->
+		</div>-->
 	<body>
 </html>

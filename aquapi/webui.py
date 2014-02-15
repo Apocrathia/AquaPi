@@ -36,6 +36,10 @@ webui.add_url_rule('/ledtest/',
 		view_func=LEDTest.as_view('ledtest'), 
 		methods=['GET', 'POST'])
 
+webui.add_url_rule('/temptest/', 
+		view_func=TempTest.as_view('temptest'), 
+		methods=['GET'])
+
 @webui.errorhandler(404)
 def page_not_found(error):
 	return flask.render_template('404.html'), 404

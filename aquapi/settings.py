@@ -6,7 +6,7 @@
 import flask, flask.views
 
 # need a key for posts
-secret_key = "aquapi" # very insecure, change to md5
+secret_key = "714c2e212a824bfa2c80398d873232be" # md5 for 'aquapi'
 
 # simple dict of users
 users = {'test': 'test'}
